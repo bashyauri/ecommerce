@@ -22,6 +22,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+// Admin Login without admin group
+Route::get('admin/login',[AdminController::class,'login']);
 // ADMIN DASHBOARD ROUTE without admin group
 Route::get('/admin/dashboard',[AdminController::class,'dashboard']);
 Route::middleware('auth')->group(function () {
