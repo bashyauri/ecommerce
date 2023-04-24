@@ -24,9 +24,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::prefix('/admin')->group(function(){
 // Admin Login
-Route::get('login',[AdminController::class,'login']);
+Route::match(['GET','POST'],'login',[AdminController::class,'login']);
 // ADMIN DASHBOARD
-Route::get('dashboard',[AdminController::class,'dashboard']);
+Route::group(['middleware'=> ['admin']],function(){
+    Route::match(['GET','POST'],'dashboard',[AdminController::class,'dashboard']);
+});
+
 });
 
 Route::middleware('auth')->group(function () {
