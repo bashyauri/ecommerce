@@ -28,6 +28,8 @@ Route::match(['GET','POST'],'login',[AdminController::class,'login']);
 // ADMIN DASHBOARD
 Route::group(['middleware'=> ['admin']],function(){
     Route::match(['GET','POST'],'dashboard',[AdminController::class,'dashboard']);
+    //Admin Logout
+    Route::get('/logout',[AdminController::class,'logout']);
 });
 
 });
