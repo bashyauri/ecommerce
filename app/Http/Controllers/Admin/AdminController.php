@@ -34,6 +34,9 @@ class AdminController extends Controller
         }
         return view('admin.login');
     }
+    public function updateAdminPassword(){
+        return view('admin.settings.update_admin_password');
+    }
     public function logout(){
         Auth::guard('admin')->logout();
         return redirect('admin/login');
