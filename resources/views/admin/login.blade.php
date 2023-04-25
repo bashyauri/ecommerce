@@ -39,13 +39,22 @@
                 </button>
               </div>
               @endif
+              @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        </div>
+        @endif
               <form class="pt-3" action = "{{url('admin/login')}}" method = "POST">
                 @csrf
                 <div class="form-group">
-                  <input type="email" name = "email" id = "email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username" required>
+                  <input type="text" name = "email" id = "email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
                 </div>
                 <div class="form-group">
-                  <input type="password" name = "password" id = "password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" required>
+                  <input type="password" name = "password" id = "password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
                 </div>
                 <div class="mt-3">
                   <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
