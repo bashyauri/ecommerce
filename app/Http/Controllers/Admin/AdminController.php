@@ -20,8 +20,8 @@ class AdminController extends Controller
             ];
             $customMessages = [
                 // Add custom messages here.
-                'email.required' => 'Email is required!',
-                'email.email' => 'Valid Email is required',
+                'email.required' => 'Email Address is required!',
+                'email.email' => 'Valid Email Address is required',
                 'password.required' => 'Password is required!',
             ];
             $this->validate($request,$rules,$customMessages);
