@@ -35,16 +35,20 @@
               <h4 class="card-title">Update Admin Password</h4>
               <form class="forms-sample">
                 <div class="form-group">
-                  <label for="exampleInputUsername1">Username</label>
-                  <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username">
+                  <label >Admin Username/Email</label>
+                  <input  class="form-control" value="{{$email}}" readonly>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                  <label for="exampleInputEmail1">Admin Type</label>
+                  <input  class="form-control" value="{{$type}}" readonly>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  <label for="current_password">Current Password</label>
+                  <input type="password" name="current_password" class="form-control" id="current_password" placeholder="Current Password" required>
+                </div>
+                <div class="form-group">
+                  <label for="new_password">New Password</label>
+                  <input type="password" name="new_password" class="form-control" id="new_password" placeholder="New Password" required>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputConfirmPassword1">Confirm Password</label>
