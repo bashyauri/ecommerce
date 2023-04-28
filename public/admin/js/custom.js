@@ -1,16 +1,19 @@
 $(document).ready(function () {
-    //Check admin password is correct
     $("#current_password").keyup(function () {
         var current_password = $("#current_password").val();
+        // console.log("Current password: " + current_password);
         $.ajax({
-            type: "post",
-            url: "/admin/check-current-password",
-            data: { current_password: current_password },
-            success: function (resp) {
-                alert(resp);
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
-            error: function (err) {
-                alert("Error:");
+            type: "POST",
+            url: "check-admin-password",
+            data: { current_password: current_password },
+            success: function (response) {
+                alert(response);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
             },
         });
     });
