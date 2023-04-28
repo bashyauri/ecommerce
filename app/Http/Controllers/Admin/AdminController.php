@@ -35,6 +35,10 @@ class AdminController extends Controller
         }
         return view('admin.login');
     }
+    public function checkAdminPassword(Request $request){
+        $data = $request->all();
+       echo print_r($data);
+    }
     public function updateAdminPassword()
     {
         $adminDetails = Admin::where(['email'=>Auth::guard('admin')->user()->email])->first()->toArray();
