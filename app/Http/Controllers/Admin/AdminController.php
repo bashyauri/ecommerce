@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -37,7 +38,11 @@ class AdminController extends Controller
     }
     public function checkAdminPassword(Request $request){
         $data = $request->all();
-       echo print_r($data);
+       if(Hash::check($data['current_password'],Auth::guard('admin')->user()->password)){
+        return "true";
+
+       }
+       return "false";
     }
     public function updateAdminPassword()
     {
