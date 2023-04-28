@@ -34,6 +34,7 @@
             <div class="card-body">
               <h4 class="card-title">Update Admin Password</h4>
             <form class="forms-sample">
+                @csrf
                 <div class="form-group">
                   <label >Admin Username/Email</label>
                   <input  class="form-control" value="{{$email}}" readonly>
