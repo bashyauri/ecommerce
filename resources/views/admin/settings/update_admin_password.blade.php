@@ -33,7 +33,15 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Update Admin Password</h4>
-            <form class="forms-sample" action = "{{url('admin/update_admin_password')}}" method = "POST">
+              @if(Session::has('error_message'))
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error</strong> {{Session::get('error_message')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              @endif
+            <form class="forms-sample" action = "{{url('admin/update-admin-password')}}" method = "POST">
                 @csrf
                 <div class="form-group">
                   <label >Admin Username/Email</label>
@@ -54,7 +62,7 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputConfirmPassword1">Confirm Password</label>
-                  <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
+                  <input type="password" name = "confirm_password" class="form-control" id="confirm_password" placeholder="Confirm Password">
                 </div>
 
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
