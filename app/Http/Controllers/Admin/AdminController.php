@@ -62,6 +62,9 @@ class AdminController extends Controller
         $adminDetails = Admin::where(['email'=>Auth::guard('admin')->user()->email])->first()->toArray();
         return view('admin.settings.update_admin_password')->with($adminDetails);
     }
+    public function updateAdminDetails(){
+        return view('admin.settings.update_admin_details');
+    }
     public function logout(){
         Auth::guard('admin')->logout();
         return redirect('admin/login');
