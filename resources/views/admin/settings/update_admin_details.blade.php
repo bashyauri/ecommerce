@@ -53,26 +53,20 @@
                 @csrf
                 <div class="form-group">
                   <label >Admin Username/Email</label>
-                  <input  class="form-control" value="{{$email}}" readonly>
+                  <input  class="form-control" value="{{Auth::guard('admin')->user()->email}}" readonly>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Admin Type</label>
-                  <input  class="form-control" value="{{$type}}" readonly>
+                  <input  class="form-control" value="{{Auth::guard('admin')->user()->type}}" readonly>
                 </div>
                 <div class="form-group">
-                  <label for="current_password">Current Password</label>
-                  <input type="password" name="current_password" class="form-control" id="current_password" placeholder="Current Password" required>
-                  <span id="check_password"></span>
-                </div>
+                    <label for="admin_name">Name</label>
+                    <input type="text" name="admin_name" value="{{Auth::guard('admin')->user()->name}}" class="form-control" id="admin_name" placeholder="Admin Name" required>
+                  </div>
                 <div class="form-group">
-                  <label for="new_password">New Password</label>
-                  <input type="password" name="new_password" class="form-control" id="new_password" placeholder="New Password" required>
+                  <label for="admin_mobile">Mobile</label>
+                  <input type="text" name="admin_mobile" value="{{Auth::guard('admin')->user()->mobile}}" class="form-control" id="admin_mobile" placeholder="Admin Mobile" required>
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputConfirmPassword1">Confirm Password</label>
-                  <input type="password" name = "confirm_password" class="form-control" id="confirm_password" placeholder="Confirm Password">
-                </div>
-
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                 <button class="btn btn-light">Cancel</button>
               </form>
