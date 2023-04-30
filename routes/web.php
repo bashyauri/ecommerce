@@ -29,6 +29,8 @@ Route::match(['GET','POST'],'login',[AdminController::class,'login']);
 Route::group(['middleware'=> ['admin']],function(){
     //Check Admin Password
     Route::post('check-admin-password',[AdminController::class,'checkAdminPassword'])->name('check-admin-password');
+    //Update Admin Details
+    Route::match(['GET','POST'],'update-admin-details',[AdminController::class,'updateAdminDetails']);
     //Update Admin Password
     Route::match(['GET','POST'],'update-admin-password',[AdminController::class,'updateAdminPassword']);
     //Admin Dashboard
