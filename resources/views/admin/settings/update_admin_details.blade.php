@@ -49,7 +49,19 @@
                 </button>
               </div>
               @endif
-            <form class="forms-sample" action = "{{url('admin/update-admin-password')}}" method = "POST">
+
+              @if ($errors->any())
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+
+        </div>
+        @endif
+            <form class="forms-sample" action = "{{url('admin/update-admin-details')}}" method = "POST">
                 @csrf
                 <div class="form-group">
                   <label >Admin Username/Email</label>
@@ -65,7 +77,8 @@
                   </div>
                 <div class="form-group">
                   <label for="admin_mobile">Mobile</label>
-                  <input type="text" name="admin_mobile" value="{{Auth::guard('admin')->user()->mobile}}" class="form-control" id="admin_mobile" placeholder="Admin Mobile" required>
+                  <input type="text" name="admin_mobile" value="{{Auth::guard('admin')->user()->mobile}}" class="form-control"
+                   id="admin_mobile" placeholder="Enter 11 digit number" maxlength="11" minlength="11" required>
                 </div>
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                 <button class="btn btn-light">Cancel</button>
