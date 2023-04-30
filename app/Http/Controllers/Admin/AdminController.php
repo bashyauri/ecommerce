@@ -76,7 +76,7 @@ class AdminController extends Controller
                 'admin_mobile.required' => 'Mobile is required',
                 'admin_mobile.numeric' => 'Valid Mobile is required',
             ];
-            $this->validate($request,$rules);
+            $this->validate($request,$rules,$customMessages);
             Admin::where('id',Auth::guard('admin')->user()->id)->update(['name'=> $data['admin_name'],'mobile' => $data['admin_mobile']]);
             return redirect()->back()->with(['success_message' => 'Admin details updated successfully!']);
         }
