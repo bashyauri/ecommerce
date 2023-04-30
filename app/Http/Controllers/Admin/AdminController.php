@@ -70,6 +70,12 @@ class AdminController extends Controller
                 'admin_name' => 'required|regex:/^[\pL\s\-]+$/u',
                 'admin_mobile' => 'required|numeric'
             ];
+            $customMessages = [
+                'admin_name.required' => 'Name is required',
+                'admin_name.regex' => 'The name must be valid',
+                'admin_mobile.required' => 'Mobile is required',
+                'admin_mobile.numeric' => 'Valid Mobile is required',
+            ];
             $this->validate($request,$rules);
             Admin::where('id',Auth::guard('admin')->user()->id)->update(['name'=> $data['admin_name'],'mobile' => $data['admin_mobile']]);
             return redirect()->back()->with(['success_message' => 'Admin details updated successfully!']);
