@@ -32,7 +32,7 @@
         <div class="col-md-6 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Update Admin Password</h4>
+              <h4 class="card-title">Update Admin Details</h4>
               @if(Session::has('error_message'))
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong>Error</strong> {{Session::get('error_message')}}
@@ -61,7 +61,7 @@
 
         </div>
         @endif
-            <form class="forms-sample" action = "{{url('admin/update-admin-details')}}" method = "POST">
+            <form class="forms-sample" action = "{{url('admin/update-admin-details')}}" method = "POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                   <label >Admin Username/Email</label>
