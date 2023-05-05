@@ -80,6 +80,11 @@
                   <input type="text" name="admin_mobile" value="{{Auth::guard('admin')->user()->mobile}}" class="form-control"
                    id="admin_mobile" placeholder="Enter 11 digit number" maxlength="11" minlength="11" required>
                 </div>
+                <div class="form-group">
+                    <label for="admin_mobile">Admin Photo</label>
+                    <input type="file" name="admin_image" class="form-control"
+                     id="admin_image"  required>
+                  </div>
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                 <button class="btn btn-light">Cancel</button>
               </form>
