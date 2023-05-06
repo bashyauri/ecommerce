@@ -7,6 +7,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AdminController extends Controller
 {
@@ -16,6 +17,7 @@ class AdminController extends Controller
     public function login(Request $request){
         if ($request->isMethod('post')){
             $data = $request->all();
+
             $rules = [
                 'email' => 'required|email|max:255',
                 'password' => 'required'
@@ -26,7 +28,9 @@ class AdminController extends Controller
                 'email.email' => 'Valid Email Address is required',
                 'password.required' => 'Password is required!',
             ];
+
             $this->validate($request,$rules,$customMessages);
+
             if(Auth::guard('admin')->attempt(['email'=>$data['email'],'password' => $data['password'],'status'=> 1])){
                 return redirect('admin/dashboard');
             }else{
@@ -65,6 +69,7 @@ class AdminController extends Controller
     public function updateAdminDetails(Request $request){
         if($request->isMethod('post')){
             $data= $request->all();
+
         //   Update Admin Details
             $rules = [
                 'admin_name' => 'required|regex:/^[\pL\s\-]+$/u',
@@ -77,7 +82,21 @@ class AdminController extends Controller
                 'admin_mobile.numeric' => 'Valid Mobile is required',
             ];
             $this->validate($request,$rules,$customMessages);
-            Admin::where('id',Auth::guard('admin')->user()->id)->update(['name'=> $data['admin_name'],'mobile' => $data['admin_mobile']]);
+            // Upload Photos
+            if($request->hasFile('admin_image')){
+                $image_tmp = $request->file('admin_image');
+                if($image_tmp->isValid()){
+                    $extension = $image_tmp->getClientOriginalExtension();
+                    $imageName = rand(111,99999).'.'.$extension;
+                    $imagePath = 'admin/images/photos'.$imageName;
+                    Image::make($image_tmp)->save($imagePath);
+                }
+            }
+            Admin::where('id',Auth::guard('admin')->user()->id)->update(
+                ['name'=> $data['admin_name'],
+                'mobile' => $data['admin_mobile'],
+                'image' => $imageName]
+        );
             return redirect()->back()->with(['success_message' => 'Admin details updated successfully!']);
         }
         return view('admin.settings.update_admin_details');
