@@ -12,6 +12,10 @@ class VendorsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $vendorRecords = [
+            ['id' => 1,'name' => 'Bashar','address' => 'Yabo, Yauri','city' => 'Yauri',
+             'state' => 'Delhi', 'country' => 'Nigeria','pincode' => '110001', 'mobile' => '09029991710',
+             'email' => 'basharu@ymail.com','status' =>0],
+        ];
     }
 }
