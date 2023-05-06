@@ -88,7 +88,7 @@ class AdminController extends Controller
                 if($image_tmp->isValid()){
                     $extension = $image_tmp->getClientOriginalExtension();
                     $imageName = rand(111,99999).'.'.$extension;
-                    $imagePath = 'admin/images/photos'.$imageName;
+                    $imagePath = 'admin/images/photos/'.$imageName;
                     Image::make($image_tmp)->save($imagePath);
                 }
             }
