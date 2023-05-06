@@ -90,7 +90,13 @@ class AdminController extends Controller
                     $imageName = rand(111,99999).'.'.$extension;
                     $imagePath = 'admin/images/photos/'.$imageName;
                     Image::make($image_tmp)->save($imagePath);
+
                 }
+            } else if(!empty($data['current_admin_image'])){
+                $imageName = $data['current_admin_image'];
+
+            } else {
+                $imageName = "";
             }
             Admin::where('id',Auth::guard('admin')->user()->id)->update(
                 ['name'=> $data['admin_name'],
