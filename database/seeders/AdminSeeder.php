@@ -18,6 +18,7 @@ class AdminSeeder extends Seeder
             ['id' => 2, 'name' => 'Bashar','type' =>'vendor','vendor_id' => 1,'mobile' => '09029991710',
             'email' => 'basharu@ymail.com','password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','image' => '','status' => 0 ],
 
+
         ];
         Admin::insert($adminRecords);
     }

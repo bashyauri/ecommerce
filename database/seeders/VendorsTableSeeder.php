@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Vendor;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,5 +18,6 @@ class VendorsTableSeeder extends Seeder
              'state' => 'Delhi', 'country' => 'Nigeria','pincode' => '110001', 'mobile' => '09029991710',
              'email' => 'basharu@ymail.com','status' => 0],
         ];
+        Vendor::insert($vendorRecords);
     }
 }
