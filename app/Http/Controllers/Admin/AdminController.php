@@ -107,6 +107,18 @@ class AdminController extends Controller
         }
         return view('admin.settings.update_admin_details');
     }
+    public function updateVendorDetails(string $slug){
+        if($slug == 'personal'){
+            $vendorDetails = Admin::where(['email'=>Auth::guard('admin')->user()->email])->first()->toArray();
+
+        } else if($slug == 'business'){
+
+        } else if($slug == 'bank'){
+
+        }
+        return view('admin.settings.update_vendor_details',compact('slug','vendorDetails'));
+
+    }
     public function logout(){
         Auth::guard('admin')->logout();
         return redirect('admin/login');
