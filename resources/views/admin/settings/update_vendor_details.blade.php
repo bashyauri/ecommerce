@@ -62,7 +62,7 @@
 
         </div>
         @endif
-            <form class="forms-sample" action = "{{url('admin/update-admin-details')}}" method = "POST" enctype="multipart/form-data">
+            <form class="forms-sample" action = "{{url('admin/update-vendor-details/personal')}}" method = "POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                   <label >Vendor Username/Email</label>
@@ -74,27 +74,27 @@
                   </div>
                 <div class="form-group">
                     <label for="vendor_address">Address</label>
-                    <input type="text" name="vendor_address" value="" class="form-control" id="vendor_address" placeholder="Enter Address" required>
+                    <input type="text" name="vendor_address" value="{{$vendorDetails->address}}" class="form-control" id="vendor_address" placeholder="Enter Address" required>
                 </div>
                 <div class="form-group">
                 <label for="vendor_city">City</label>
-                <input type="text" name="vendor_city" value="" class="form-control" id="vendor_city" placeholder="Enter City" required>
+                <input type="text" name="vendor_city" value="{{$vendorDetails->city}}" class="form-control" id="vendor_city" placeholder="Enter City" required>
                 </div>
                 <div class="form-group">
                     <label for="vendor_state">State</label>
-                    <input type="text" name="vendor_state" value="" class="form-control" id="vendor_state" placeholder="Enter State" required>
+                    <input type="text" name="vendor_state" value="{{$vendorDetails->state}}" class="form-control" id="vendor_state" placeholder="Enter State" required>
                 </div>
                 <div class="form-group">
                     <label for="vendor_country">Country</label>
-                    <input type="text" name="vendor_country" value="" class="form-control" id="vendor_country" placeholder="Enter Country" required>
+                    <input type="text" name="vendor_country" value="{{$vendorDetails->country}}" class="form-control" id="vendor_country" placeholder="Enter Country" required>
                 </div>
                 <div class="form-group">
                     <label for="vendor_pincode">PinCode</label>
-                    <input type="text" name="vendor_pincode" value="" class="form-control" id="vendor_pincode" placeholder="Enter State" required>
+                    <input type="text" name="vendor_pincode" value="{{$vendorDetails->pincode}}" class="form-control" id="vendor_pincode" placeholder="Enter State" required>
                 </div>
                 <div class="form-group">
                   <label for="vendor_mobile">Mobile</label>
-                  <input type="text" name="vendor_mobile" value="" class="form-control"
+                  <input type="text" name="vendor_mobile" value="{{$vendorDetails->mobile}}" class="form-control"
                    id="vendor_mobile" placeholder="Enter 11 digit number" maxlength="11" minlength="11" required>
                 </div>
                 <div class="form-group">
