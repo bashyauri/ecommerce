@@ -66,7 +66,7 @@
                 @csrf
                 <div class="form-group">
                   <label >Vendor Username/Email</label>
-                  <input  class="form-control" value="{{Auth::guard('admin')->user()->email}}" readonly>
+                  <input  class="form-control" value="{{Auth::guard('admin')->user()->email}}" y>
                 </div>
                 <div class="form-group">
                     <label for="admin_name">Name</label>

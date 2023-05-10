@@ -112,7 +112,43 @@ class AdminController extends Controller
         if($slug == 'personal'){
             if($request->isMethod('POST')){
                 $data = $request->all();
-                dd($data);
+                $rules = [
+                    'admin_name' => 'required|regex:/^[\pL\s\-]+$/u',
+                    'admin_mobile' => 'required|numeric'
+                ];
+                $customMessages = [
+                    'admin_name.required' => 'Name is required',
+                    'admin_name.regex' => 'The name must be valid',
+                    'admin_mobile.required' => 'Mobile is required',
+                    'admin_mobile.numeric' => 'Valid Mobile is required',
+                ];
+                $this->validate($request,$rules,$customMessages);
+                // Upload Photos
+                if($request->hasFile('admin_image')){
+                    $image_tmp = $request->file('admin_image');
+                    if($image_tmp->isValid()){
+                        $extension = $image_tmp->getClientOriginalExtension();
+                        $imageName = rand(111,99999).'.'.$extension;
+                        $imagePath = 'admin/images/photos/'.$imageName;
+                        Image::make($image_tmp)->save($imagePath);
+
+                    }
+                } else if(!empty($data['current_admin_image'])){
+                    $imageName = $data['current_admin_image'];
+
+                } else {
+                    $imageName = "";
+                }
+                // Update in Admin table
+                Admin::where('id',Auth::guard('admin')->user()->id)->update(
+                    ['name'=> $data['vendor_name'],
+                    'mobile' => $data['vendor_mobile'],
+                    'image' => $imageName]
+            );
+            // Update in vendors table
+            Vendor::where(['id'=>Auth::guard('admin')->user()->vendor_id])->update(['name'=> $data['vendor_name'],
+            'mobile' => $data['vendor_mobile']]);
+                return redirect()->back()->with(['success_message' => 'Vendor details updated successfully!']);
             }
             $vendorDetails = Vendor::where(['id'=>Auth::guard('admin')->user()->vendor_id])->first();
 
