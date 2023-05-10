@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -107,16 +108,20 @@ class AdminController extends Controller
         }
         return view('admin.settings.update_admin_details');
     }
-    public function updateVendorDetails(string $slug){
+    public function updateVendorDetails(Request $request, string $slug){
         if($slug == 'personal'){
-            $vendorDetails = Admin::where(['email'=>Auth::guard('admin')->user()->email])->first()->toArray();
+            if($request->isMethod('POST')){
+                $data = $request->all();
+                dd($data);
+            }
+            $vendorDetails = Vendor::where(['id'=>Auth::guard('admin')->user()->vendor_id])->first();
 
         } else if($slug == 'business'){
 
         } else if($slug == 'bank'){
 
         }
-        return view('admin.settings.update_vendor_details',compact('slug','vendorDetails'));
+        return view('admin.settings.update_vendor_details',['slug' => $slug,'vendorDetails'=>$vendorDetails]);
 
     }
     public function logout(){
