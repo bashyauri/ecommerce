@@ -66,10 +66,10 @@
                 @csrf
                 <div class="form-group">
                   <label >Vendor Username/Email</label>
-                  <input  class="form-control" value="{{Auth::guard('admin')->user()->email}}" y>
+                  <input  class="form-control" value="{{Auth::guard('admin')->user()->email}}" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="admin_name">Name</label>
+                    <label for="vendor_name">Name</label>
                     <input type="text" name="vendor_name" value="{{Auth::guard('admin')->user()->name}}" class="form-control" id="admin_name" placeholder="Vendor Name" required>
                   </div>
                 <div class="form-group">
@@ -98,17 +98,12 @@
                    id="vendor_mobile" placeholder="Enter 11 digit number" maxlength="11" minlength="11" required>
                 </div>
                 <div class="form-group">
-                    <label for="admin_mobile">Mobile</label>
-                    <input type="text" name="admin_mobile" value="{{Auth::guard('admin')->user()->mobile}}" class="form-control"
-                     id="admin_mobile" placeholder="Enter 11 digit number" maxlength="11" minlength="11" required>
-                  </div>
-                <div class="form-group">
-                    <label for="admin_mobile">Photo</label>
-                    <input type="file" name="admin_image" class="form-control"
-                     id="admin_image">
+                    <label for="vendor_image">Photo</label>
+                    <input type="file" name="vendor_image" class="form-control"
+                     id="vendor_image">
                      @if (!empty(Auth::guard('admin')->user()->image))
                      <a  target="_blank" href="{{url('admin/images/photos/'.Auth::guard('admin')->user()->image)}}" >View Image</a>
-                     <input type="hidden" name="current_admin_image" value="{{Auth::guard('admin')->user()->image}}">
+                     <input type="hidden" name="current_vendor_image" value="{{Auth::guard('admin')->user()->image}}">
 
                      @endif
                   </div>
