@@ -153,12 +153,59 @@ class AdminController extends Controller
             'mobile' => $data['vendor_mobile'],'address' => $data['vendor_address'],
             'city' => $data['vendor_city'],'state' => $data['vendor_state'],'country' => $data['vendor_country'],
             'pincode' => $data['vendor_pincode'],
-        ]);
+            ]);
                 return redirect()->back()->with(['success_message' => 'Vendor details updated successfully!']);
             }
             $vendorDetails = Vendor::where(['id'=>Auth::guard('admin')->user()->vendor_id])->first();
 
         } else if($slug == 'business'){
+            if($request->isMethod('POST')){
+                $data = $request->all();
+                $rules = [
+                    'shop_name' => 'required|regex:/^[\pL\s\-]+$/u',
+                    'shop_mobile' => 'required|numeric',
+                    'shop_city' => 'required|regex:/^[\pL\s\-]+$/u',
+                    'address_proof' => 'required',
+                    'address_proof_image' => 'image',
+                ];
+                $customMessages = [
+                    'shop_name.required' => 'Name is required',
+                    'shop_name.regex' => 'The name must be valid',
+                    'shop_city.regex' => 'The City must be valid',
+                    'shop_mobile.required' => 'Mobile is required',
+                    'shop_mobile.numeric' => 'Valid Mobile is required',
+                    'address_proof.required' => 'Address Proof  is required',
+                    'address_proof_image.image' => 'Address Proof Image is required',
+                ];
+                $this->validate($request,$rules,$customMessages);
+                // Upload Photos
+                if($request->hasFile('address_proof_image')){
+                    $image_tmp = $request->file('address_proof_image');
+                    if($image_tmp->isValid()){
+                        $extension = $image_tmp->getClientOriginalExtension();
+                        $imageName = rand(111,99999).'.'.$extension;
+                        $imagePath = 'admin/images/proofs/'.$imageName;
+                        Image::make($image_tmp)->save($imagePath);
+
+                    }
+                } else if(!empty($data['current_address_proof_image'])){
+                    $imageName = $data['current_address_proof_image'];
+
+                } else {
+                    $imageName = "";
+                }
+                // Update in vendors_business_table_details table
+                VendorsBusinessDetail::where(['vendor_id'=>Auth::guard('admin')->user()->vendor_id])->update(['shop_name'=> $data['shop_name'],
+                'shop_mobile' => $data['shop_mobile'],'shop_address' => $data['shop_address'],
+                'shop_city' => $data['shop_city'],'shop_state' => $data['shop_state'],'shop_country' => $data['shop_country'],
+                'shop_pincode' => $data['shop_pincode'], 'business_license_number' => $data['business_license_number'],
+                'gst_number' => $data['gst_number'],'pan_number' => $data['pan_number'],
+                'address_proof' => $data['address_proof'], 'address_proof_image' => $imageName,
+
+                ]);
+
+                return redirect()->back()->with(['success_message' => 'Vendor details updated successfully!']);
+            }
             $vendorDetails = VendorsBusinessDetail::where(['vendor_id'=>Auth::guard('admin')->user()->vendor_id])->first();
 
         } else if($slug == 'bank'){
