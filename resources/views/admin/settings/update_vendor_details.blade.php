@@ -179,7 +179,7 @@
                     </div>
                     <div class="form-group">
                       <label for="shop_mobile">Shop Mobile</label>
-                      <input type="text" name="shop_mobile" value="{{$vendorDetails->mobile}}" class="form-control"
+                      <input type="text" name="shop_mobile" value="{{$vendorDetails->shop_mobile}}" class="form-control"
                        id="shop_mobile" placeholder="Enter 11 digit Shop number" maxlength="11" minlength="11" required>
                     </div>
                     <div class="form-group">
@@ -200,20 +200,20 @@
                     <div class="form-group">
                       <label for="address_proof">Address Proof</label>
                       <select class="form-control" name="address_proof" id="address_proof">
-                        <option value="Passport">Passport</option>
-                        <option value="Voting Card">Voting Card</option>
-                        <option value="Pan">Pan</option>
-                        <option value="Driving License">Driving License</option>
+                        <option value="Passport" @if ($vendorDetails->address_proof == "Passport") selected @endif>Passport</option>
+                        <option value="Voting Card" @if ($vendorDetails->address_proof == "Voting Card") selected @endif>Voting Card</option>
+                        <option value="Pan" @if ($vendorDetails->address_proof == "Pan") selected @endif>Pan</option>
+                        <option value="Driving License" @if ($vendorDetails->address_proof == "Driving License") selected @endif>Driving License</option>
                       </select>
 
                     </div>
                     <div class="form-group">
                         <label for="address_proof_image">Address Proof Image</label>
-                        <input type="file" name="saddress_proof_image" class="form-control"
+                        <input type="file" name="address_proof_image" class="form-control"
                          id="address_proof_image">
                          @if (!empty($vendorDetails->address_proof_image))
                          <a  target="_blank" href="{{url('admin/images/proofs/'.$vendorDetails->address_proof_image)}}" >View Image</a>
-                         <input type="hidden" name="address_proof_image" value="{{$vendorDetails->address_proof_image}}">
+                         <input type="hidden" name="current_address_proof_image" value="{{$vendorDetails->address_proof_image}}">
 
                          @endif
                       </div>
