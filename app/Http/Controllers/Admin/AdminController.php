@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Vendor;
+use App\Models\VendorsBankDetail;
 use App\Models\VendorsBusinessDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -209,7 +210,34 @@ class AdminController extends Controller
             $vendorDetails = VendorsBusinessDetail::where(['vendor_id'=>Auth::guard('admin')->user()->vendor_id])->first();
 
         } else if($slug == 'bank'){
+            if($request->isMethod('POST')){
+                $data = $request->all();
+                $rules = [
+                    'account_holder_name' => 'required|regex:/^[\pL\s\-]+$/u',
+                    'bank_name' => 'required',
+                    'account_number' => 'required|numeric',
 
+                ];
+                $customMessages = [
+                    'account_holder_name.required' => 'Account name is required',
+                    'account_holder_name.regex' => 'Account holder name must be valid',
+                    'bank_name.required' => 'Bank Name is required',
+                    'account_number.numeric' => 'Valid Account number',
+                    'account_number.required' => 'Account Number is required',
+
+                ];
+                $this->validate($request,$rules,$customMessages);
+
+                // Update in vendors_bank_table_details table
+                VendorsBankDetail::where(['vendor_id'=>Auth::guard('admin')->user()->vendor_id])->update([
+                    'account_holder_name'=> $data['account_holder_name'],
+                'bank_name' => $data['bank_name'],'account_number' => $data['account_number'],
+
+                ]);
+
+                return redirect()->back()->with(['success_message' => 'Vendor details updated successfully!']);
+            }
+            $vendorDetails = VendorsBankDetail::where(['vendor_id'=>Auth::guard('admin')->user()->vendor_id])->first();
         }
         return view('admin.settings.update_vendor_details',['slug' => $slug,'vendorDetails'=>$vendorDetails]);
 
