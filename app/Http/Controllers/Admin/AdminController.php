@@ -242,6 +242,9 @@ class AdminController extends Controller
         return view('admin.settings.update_vendor_details',['slug' => $slug,'vendorDetails'=>$vendorDetails]);
 
     }
+    public function admins(){
+
+    }
     public function logout(){
         Auth::guard('admin')->logout();
         return redirect('admin/login');
