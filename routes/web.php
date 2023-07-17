@@ -37,6 +37,8 @@ Route::group(['middleware'=> ['admin']],function(){
     Route::match(['GET','POST'],'update-admin-password',[AdminController::class,'updateAdminPassword']);
     //Admin Dashboard
     Route::match(['GET','POST'],'dashboard',[AdminController::class,'dashboard']);
+    // Update Admins /Subadmins / Vendors
+    Route::get('admins/{type?}',[AdminController::class,'admins']);
     //Admin Logout
     Route::get('/logout',[AdminController::class,'logout']);
 });
