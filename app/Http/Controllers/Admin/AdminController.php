@@ -242,7 +242,14 @@ class AdminController extends Controller
         return view('admin.settings.update_vendor_details',['slug' => $slug,'vendorDetails'=>$vendorDetails]);
 
     }
-    public function admins(){
+    public function admins($type=null)
+    {
+        $admins = Admin::query();
+        if(!empty($type)){
+            $admins->where('type',$type);
+        }
+        $admins = $admins->get();
+        return view('admin.admins.admins',['admins'=>$admins]);
 
     }
     public function logout(){
