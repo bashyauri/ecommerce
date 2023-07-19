@@ -257,8 +257,8 @@ class AdminController extends Controller
     }
     public function viewVendorDetails($id)
     {
-        $vendorDetails = Admin::where('id',$id)->first();
-        dd($vendorDetails);
+        $vendorDetails = Admin::with('vendorPersonal','vendorBusiness','vendorBank')->where('id',$id)->first();
+        return view('admin.admins.view_vendor_details',['vendorDetails'=>$vendorDetails]);
     }
     public function logout(){
         Auth::guard('admin')->logout();
