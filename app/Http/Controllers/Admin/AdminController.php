@@ -255,6 +255,11 @@ class AdminController extends Controller
         return view('admin.admins.admins',['admins'=>$admins, 'title'=>$title]);
 
     }
+    public function viewVendorDetails($id)
+    {
+        $vendorDetails = Admin::where('id',$id)->first();
+        dd($vendorDetails);
+    }
     public function logout(){
         Auth::guard('admin')->logout();
         return redirect('admin/login');
