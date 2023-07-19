@@ -39,6 +39,8 @@ Route::group(['middleware'=> ['admin']],function(){
     Route::match(['GET','POST'],'dashboard',[AdminController::class,'dashboard']);
     // Update Admins /Subadmins / Vendors
     Route::get('admins/{type?}',[AdminController::class,'admins']);
+    // View Vendor Details
+    Route::get('view-vendor-details/{id}',[AdminController::class,'viewVendorDetails']);
     //Admin Logout
     Route::get('/logout',[AdminController::class,'logout']);
 });
