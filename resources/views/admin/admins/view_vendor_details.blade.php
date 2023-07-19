@@ -45,41 +45,40 @@
                   </div>
                 <div class="form-group">
                     <label for="vendor_address">Address</label>
-                    <input type="text" name="vendor_address" value="{{$vendorDetails->address}}" class="form-control" id="vendor_address" placeholder="Enter Address" required>
+                    <input type="text" name="vendor_address" value="{{$vendorDetails->vendorPersonal->email}}" class="form-control"  readonly>
                 </div>
                 <div class="form-group">
                 <label for="vendor_city">City</label>
-                <input type="text" name="vendor_city" value="{{$vendorDetails->city}}" class="form-control" id="vendor_city" placeholder="Enter City" required>
+                <input type="text" name="vendor_city" value="{{$vendorDetails->vendorPersonal->email}}" class="form-control"  readonly>
                 </div>
                 <div class="form-group">
                     <label for="vendor_state">State</label>
-                    <input type="text" name="vendor_state" value="{{$vendorDetails->state}}" class="form-control" id="vendor_state" placeholder="Enter State" required>
+                    <input type="text" name="vendor_state" value="{{$vendorDetails->state}}" class="form-control" readonly>
                 </div>
                 <div class="form-group">
                     <label for="vendor_country">Country</label>
-                    <input type="text" name="vendor_country" value="{{$vendorDetails->country}}" class="form-control" id="vendor_country" placeholder="Enter Country" required>
+                    <input type="text" name="vendor_country" value="{{$vendorDetails->vendorPersonal->country}}" class="form-control" id="vendor_country" placeholder="Enter Country" readonly>
                 </div>
                 <div class="form-group">
                     <label for="vendor_pincode">PinCode</label>
-                    <input type="text" name="vendor_pincode" value="{{$vendorDetails->pincode}}" class="form-control" id="vendor_pincode" placeholder="Enter State" required>
+                    <input type="text" name="vendor_pincode" value="{{$vendorDetails->vendorPersonal->pincode}}" class="form-control" readonly>
                 </div>
                 <div class="form-group">
                   <label for="vendor_mobile">Mobile</label>
-                  <input type="text" name="vendor_mobile" value="{{$vendorDetails->mobile}}" class="form-control"
-                   id="vendor_mobile" placeholder="Enter 11 digit number" maxlength="11" minlength="11" required>
+                  <input type="text" name="vendor_mobile" value="{{$vendorDetails->vendorPersonal->mobile}}" class="form-control"
+                   readonly>
                 </div>
+                @if (!empty($vendorDetails->image))
                 <div class="form-group">
                     <label for="vendor_image">Photo</label>
-                    <input type="file" name="vendor_image" class="form-control"
-                     id="vendor_image">
-                     @if (!empty(Auth::guard('admin')->user()->image))
-                     <a  target="_blank" href="{{url('admin/images/photos/'.Auth::guard('admin')->user()->image)}}" >View Image</a>
-                     <input type="hidden" name="current_vendor_image" value="{{Auth::guard('admin')->user()->image}}">
+                    <br>
+                     <img style="width:200px;" src="{{url('admin/images/photos/'.$vendorDetails->image)}}" >
 
-                     @endif
+
+
                   </div>
-                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                <button class="btn btn-light">Cancel</button>
+                  @endif
+
               </form>
             </div>
           </div>
