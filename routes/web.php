@@ -22,29 +22,31 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-Route::prefix('/admin')->group(function(){
-// Admin Login
-Route::match(['GET','POST'],'login',[AdminController::class,'login']);
-// ADMIN DASHBOARD
-Route::group(['middleware'=> ['admin']],function(){
-    //Check Admin Password
-    Route::post('check-admin-password',[AdminController::class,'checkAdminPassword'])->name('check-admin-password');
-    //Update Admin Details
-    Route::match(['GET','POST'],'update-admin-details',[AdminController::class,'updateAdminDetails']);
-    //Update Vendor Details
-    Route::match(['GET','POST'],'update-vendor-details/{slug}',[AdminController::class,'updateVendorDetails']);
-    //Update Admin Password
-    Route::match(['GET','POST'],'update-admin-password',[AdminController::class,'updateAdminPassword']);
-    //Admin Dashboard
-    Route::match(['GET','POST'],'dashboard',[AdminController::class,'dashboard']);
-    // Update Admins /Subadmins / Vendors
-    Route::get('admins/{type?}',[AdminController::class,'admins']);
-    // View Vendor Details
-    Route::get('view-vendor-details/{id}',[AdminController::class,'viewVendorDetails']);
-    //Admin Logout
-    Route::get('/logout',[AdminController::class,'logout']);
-});
+Route::prefix('/admin')->group(function () {
+    // Admin Login
+    Route::match(['GET', 'POST'], 'login', [AdminController::class, 'login']);
+    // ADMIN DASHBOARD
+    Route::group(['middleware' => ['admin']], function () {
+        //Check Admin Password
+        Route::post('check-admin-password', [AdminController::class, 'checkAdminPassword'])->name('check-admin-password');
+        //Update Admin Details
+        Route::match(['GET', 'POST'], 'update-admin-details', [AdminController::class, 'updateAdminDetails']);
+        //Update Vendor Details
+        Route::match(['GET', 'POST'], 'update-vendor-details/{slug}', [AdminController::class, 'updateVendorDetails']);
+        //Update Admin Password
+        Route::match(['GET', 'POST'], 'update-admin-password', [AdminController::class, 'updateAdminPassword']);
+        //Admin Dashboard
+        Route::match(['GET', 'POST'], 'dashboard', [AdminController::class, 'dashboard']);
+        // Update Admins /Subadmins / Vendors
+        Route::get('admins/{type?}', [AdminController::class, 'admins']);
+        // View Vendor Details
+        Route::get('view-vendor-details/{id}', [AdminController::class, 'viewVendorDetails']);
+        // Update Admin Status
+        Route::post('update-admin-status', [AdminController::class, 'updateAdminStatus']);
 
+        //Admin Logout
+        Route::get('/logout', [AdminController::class, 'logout']);
+    });
 });
 
 Route::middleware('auth')->group(function () {
@@ -53,4 +55,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
