@@ -70,8 +70,8 @@
                             <i style="font-size:25px;" class="mdi mdi-bookmark-check" status="Active"></i></a>
                            @else
                            <a class="updateAdminStatus" id ="admin-{{$admin->id}}" admin_id="{{$admin->id}}" href="javascript:void(0)">
-                            <i style="font-size:25px;" class="mdi mdi-bookmark-check" status="Inactive">
-                                <i style="font-size:25px;" class="mdi mdi-bookmark-check-outline"></i>
+                            <i style="font-size:25px;" class="mdi mdi-bookmark-outline" status="Inactive">
+
                            @endif
 
                           </td>
