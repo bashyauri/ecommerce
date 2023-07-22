@@ -1,25 +1,36 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
       <li class="nav-item">
-        <a @if (Session::get('page') == "dashboard")
-            style="background:#4B49AC !important; color:#ffff !important"
-        @endif class="nav-link" href="{{url('admin/dashboard')}}">
+        <a @if (Session::get('page') == "update_admin_password" || Session::get('page') == "update_admin_details")
+        style="background:#4B49AC !important; color:#ffff !important"
+    @endif class="nav-link" href="{{url('admin/dashboard')}}">
           <i class="icon-grid menu-icon"></i>
           <span class="menu-title">Dashboard</span>
         </a>
       </li>
       @if (Auth::guard('admin')->user()->type == 'vendor')
       <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#ui-personal" aria-expanded="false" aria-controls="ui-personal">
+        <a @if (Session::get('page') == "update_personal_details" || Session::get('page') == "update_business_details" || Session::get('page') == "update_bank_details")
+        style="background:#4B49AC !important; color:#ffff !important"
+    @endif class="nav-link" data-toggle="collapse" href="#ui-personal" aria-expanded="false" aria-controls="ui-personal">
           <i class="icon-layout menu-icon"></i>
           <span class="menu-title">Vendor Details</span>
           <i class="menu-arrow"></i>
         </a>
-        <div class="collapse" id="ui-personal">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{url('admin/update-vendor-details/personal')}}">Personal Details</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{url('admin/update-vendor-details/business')}}">Business Details</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{url('admin/update-vendor-details/bank')}}">Bank Details</a></li>
+        <div class="collapse" id="ui-personal" >
+          <ul class="nav flex-column sub-menu"  style="background:#fff !important; " >
+            <li class="nav-item"> <a @if (Session::get('page') == "update_personal_details")
+                style="background:#4B49AC !important; color:#ffff !important" @else
+                style="background:#fff !important; color:#4B49AC !important"
+            @endif class="nav-link" href="{{url('admin/update-vendor-details/personal')}}">Personal Details</a></li>
+            <li class="nav-item"> <a @if (Session::get('page') == "update_business_details")
+                style="background:#4B49AC !important; color:#ffff !important" @else
+                style="background:#fff !important; color:#4B49AC !important"
+            @endif class="nav-link" href="{{url('admin/update-vendor-details/business')}}">Business Details</a></li>
+            <li class="nav-item"> <a @if (Session::get('page') == "update_bank_details")
+                style="background:#4B49AC !important; color:#ffff !important" @else
+                style="background:#fff !important; color:#4B49AC !important"
+            @endif class="nav-link" href="{{url('admin/update-vendor-details/bank')}}">Bank Details</a></li>
           </ul>
         </div>
       </li>
