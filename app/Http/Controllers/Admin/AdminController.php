@@ -253,8 +253,10 @@ class AdminController extends Controller
         if (!empty($type)) {
             $admins->where('type', $type);
             $title = ucfirst($type) . "s";
+            Session::put('page', 'view_' . strtolower($title));
         } else {
             $title = "All Admins/Subadmins/Vendors";
+            Session::put('page', 'view_all');
         }
         $admins = $admins->get();
         return view('admin.admins.admins', ['admins' => $admins, 'title' => $title]);
