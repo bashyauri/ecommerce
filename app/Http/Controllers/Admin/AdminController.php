@@ -10,12 +10,14 @@ use App\Models\VendorsBusinessDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class AdminController extends Controller
 {
     public function dashboard()
     {
+        Session::put('page', 'dashboard');
         return view('admin.dashboard');
     }
     public function login(Request $request)
@@ -54,6 +56,7 @@ class AdminController extends Controller
     }
     public function updateAdminPassword(Request $request)
     {
+        Session::put('page', 'update_admin_password');
         if ($request->isMethod('POST')) {
             $data = $request->all();
             if (Hash::check($data['current_password'], Auth::guard('admin')->user()->password)) {
@@ -71,6 +74,7 @@ class AdminController extends Controller
     }
     public function updateAdminDetails(Request $request)
     {
+        Session::put('page', 'update_admin_details');
         if ($request->isMethod('post')) {
             $data = $request->all();
 
@@ -113,6 +117,8 @@ class AdminController extends Controller
     }
     public function updateVendorDetails(Request $request, string $slug)
     {
+        Session::put('page', 'update_vendor_details');
+
         if ($slug == 'personal') {
             if ($request->isMethod('POST')) {
                 $data = $request->all();
