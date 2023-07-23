@@ -249,7 +249,7 @@ class AdminController extends Controller
             }
             $vendorDetails = VendorsBankDetail::where(['vendor_id' => Auth::guard('admin')->user()->vendor_id])->first();
         }
-        $countries = Country::where(['satus' => 1])->get();
+        $countries = Country::where(['status' => 1])->get();
         return view('admin.settings.update_vendor_details', ['slug' => $slug, 'vendorDetails' => $vendorDetails, 'countries' => $countries]);
     }
     public function admins($type = null)
