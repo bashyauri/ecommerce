@@ -183,7 +183,18 @@
                     </div>
                     <div class="form-group">
                         <label for="shop_country">Shop Country</label>
-                        <input type="text" name="shop_country" value="{{$vendorDetails->shop_country}}" class="form-control" id="shop_country" placeholder="Enter Shop Country" required>
+
+                        <select class = "form-control" name="shop_country" id="shop_country">
+                            <option value="">Select Country</option>
+                            @foreach ($countries as $country)
+                            <option value="{{$country->country_name}}" @if ($country->country_name == $vendorDetails->shop_country)
+                                @selected(true)
+
+                            @endif>{{$country->country_name}}</option>
+
+                            @endforeach
+
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="shop_pincode">Shop PinCode</label>
