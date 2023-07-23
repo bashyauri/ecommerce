@@ -85,9 +85,18 @@
                     <input type="text" name="vendor_state" value="{{$vendorDetails->state}}" class="form-control" id="vendor_state" placeholder="Enter State" required>
                 </div>
                 <div class="form-group">
-                    <label for="vendor_country">Country</label>
-                    <input type="text" name="vendor_country" value="{{$vendorDetails->country}}" class="form-control" id="vendor_country" placeholder="Enter Country" required>
+                    {{-- <label for="vendor_country">Country</label>
+                    <input type="text" name="vendor_country" value="{{$vendorDetails->country}}" class="form-control" id="vendor_country" placeholder="Enter Country" required> --}}
+                    <select class = "form-control" name="country" id="country">
+                        <option value="">Select Country</option>
+                        @foreach ($countries as $country)
+                        <option value="{{$country->country_name}}">{{$country->country_name}}</option>
+
+                        @endforeach
+
+                    </select>
                 </div>
+
                 <div class="form-group">
                     <label for="vendor_pincode">PinCode</label>
                     <input type="text" name="vendor_pincode" value="{{$vendorDetails->pincode}}" class="form-control" id="vendor_pincode" placeholder="Enter State" required>
