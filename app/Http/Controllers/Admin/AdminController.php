@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Country;
 use App\Models\Vendor;
 use App\Models\VendorsBankDetail;
 use App\Models\VendorsBusinessDetail;
@@ -248,7 +249,8 @@ class AdminController extends Controller
             }
             $vendorDetails = VendorsBankDetail::where(['vendor_id' => Auth::guard('admin')->user()->vendor_id])->first();
         }
-        return view('admin.settings.update_vendor_details', ['slug' => $slug, 'vendorDetails' => $vendorDetails]);
+        $countries = Country::where(['satus' => 1])->get();
+        return view('admin.settings.update_vendor_details', ['slug' => $slug, 'vendorDetails' => $vendorDetails, 'countries' => $countries]);
     }
     public function admins($type = null)
     {
