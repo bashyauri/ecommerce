@@ -85,6 +85,31 @@
           </ul>
         </div>
       </li>
+      <li class="nav-item" >
+        <a @if (Session::get('page') == "sections" || Session::get('page') == "categories" || Session::get('page') == "products")
+        style="background:#4B49AC !important; color:#ffff !important"
+      @endif class="nav-link" data-toggle="collapse" href="#catalog-management" aria-expanded="false" aria-controls="form-elements">
+          <i class="icon-columns menu-icon"></i>
+          <span class="menu-title">Catalog Management</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="catalog-management">
+          <ul style="background:#fff !important;" class="nav flex-column sub-menu">
+            <li class="nav-item"><a @if (Session::get('page') == "sections")
+                style="background:#4B49AC !important; color:#ffff !important" @else
+                style="background:#fff !important; color:#4B49AC !important"
+            @endif class="nav-link" href="{{url('admin/sections')}}">Sections</a></li>
+            <li class="nav-item"><a @if (Session::get('page') == "categories")
+                style="background:#4B49AC !important; color:#ffff !important" @else
+                style="background:#fff !important; color:#4B49AC !important"
+            @endif class="nav-link" href="{{url('admin/categories')}}">Categories</a></li>
+            <li class="nav-item"><a @if (Session::get('page') == "products")
+                style="background:#4B49AC !important; color:#ffff !important" @else
+                style="background:#fff !important; color:#4B49AC !important"
+            @endif class="nav-link" href="{{url('admin/products')}}">Products</a></li>
+          </ul>
+        </div>
+      </li>
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#ui-user" aria-expanded="false" aria-controls="ui-user">
           <i class="icon-head menu-icon"></i>
@@ -99,19 +124,9 @@
           </ul>
         </div>
       </li>
+
       @endif
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
-          <i class="icon-columns menu-icon"></i>
-          <span class="menu-title">Form elements</span>
-          <i class="menu-arrow"></i>
-        </a>
-        <div class="collapse" id="form-elements">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a></li>
-          </ul>
-        </div>
-      </li>
+
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
           <i class="icon-bar-graph menu-icon"></i>
