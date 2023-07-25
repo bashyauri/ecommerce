@@ -20,7 +20,12 @@
                       <th>
                         Name
                       </th>
-
+                      <th>
+                        Status
+                      </th>
+                      <th>
+                        Actions
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -33,6 +38,24 @@
                             {{$section->name}}
                         </td>
 
+
+                          <td>
+                           @if ($section->status == 1)
+                           <a class="updateSectionStatus" id ="section-{{$section->id}}" section_id="{{$section->id}}" href="javascript:void(0)">
+                            <i style="font-size:25px;" class="mdi mdi-bookmark-check" status="Active"></i></a>
+                           @else
+                           <a class="updateSectionStatus" id ="section-{{$section->id}}" section_id="{{$section->id}}" href="javascript:void(0)">
+                            <i style="font-size:25px;" class="mdi mdi-bookmark-outline" status="Inactive">
+
+                           @endif
+
+                          </td>
+                          <td>
+
+                           <a href="{{ url('admin/view-vendor-details/'.$section->id)}}">
+                            <i style="font-size:25px;" class="mdi mdi-file-document"></i></a>
+
+                          </td>
                       </tr>
                     @endforeach
 
