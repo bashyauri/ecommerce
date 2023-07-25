@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    new DataTable("#sections");
+    $("#sections").DataTable();
     $(".nav-item").removeClass("active");
     $(".nav-link").removeClass("active");
     $("#current_password").keyup(function () {

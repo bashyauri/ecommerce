@@ -10,8 +10,8 @@
             <div class="card-body">
               <h4 class="card-title">Sections</h4>
 
-              <div class="table-responsive pt-3">
-                <table class="table table-bordered">
+              <div  class="table-responsive pt-3">
+                <table id="sections" class="table table-bordered">
                   <thead>
                     <tr>
                       <th>
