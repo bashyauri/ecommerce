@@ -23,6 +23,9 @@
   <link rel="stylesheet" href="{{ url('admin/css/vertical-layout-light/style.css')}}">
   <!-- endinject -->
   <link rel="shortcut icon" href="{{ url('admin/images/favicon.png')}}" />
+  {{-- Datatable --}}
+  <link rel="stylesheet" href="{{ url('admin/css/bootstrap.min.css') }}"/>
+  <link rel="stylesheet" href="{{ url('admin/css/dataTables.bootstrap5.min.css') }}"/>
 </head>
 <body>
   <div class="container-scroller">
