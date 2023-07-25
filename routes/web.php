@@ -51,7 +51,7 @@ Route::prefix('/admin')->group(function () {
         //Sections
         Route::get('/sections', [SectionController::class, 'sections']);
         // Update Section Status
-        Route::post('update-section-status', [AdminController::class, 'updateSectionStatus']);
+        Route::post('update-section-status', [SectionController::class, 'updateSectionStatus']);
     });
 });
 
