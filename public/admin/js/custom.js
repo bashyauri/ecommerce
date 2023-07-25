@@ -54,4 +54,31 @@ $(document).ready(function () {
             },
         });
     });
+    //
+    $(document).on("click", ".updateSectionStatus", function () {
+        let status = $(this).children("i").attr("status");
+        let sectionId = $(this).attr("section_id");
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            type: "POST",
+            url: "/admin/update-section-status",
+            data: { status: status, sectionId: sectionId },
+            success: function (response) {
+                if (response["status"] === 0) {
+                    $("#section-" + sectionId).html(
+                        '<i style="font-size:25px;" class="mdi mdi-bookmark-outline" status="Inactive"></i>'
+                    );
+                } else if (response["status"] === 1) {
+                    $("#section-" + sectionId).html(
+                        '<i style="font-size:25px;" class="mdi mdi-bookmark-check" status="Active"></i>'
+                    );
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(errorThrown);
+            },
+        });
+    });
 });
