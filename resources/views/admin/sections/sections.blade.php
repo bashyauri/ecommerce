@@ -49,7 +49,7 @@
 
                           <td>
                            @if ($section->status == 1)
-                           <a class="updateSectionStatus" id ="section-{{$section->id}}" section_id="{{$section->id}}" href="javascript:void(0)">
+                           <a  class="updateSectionStatus" id ="section-{{$section->id}}" section_id="{{$section->id}}" href="javascript:void(0)">
                             <i style="font-size:25px;" class="mdi mdi-bookmark-check" status="Active"></i></a>
                            @else
                            <a class="updateSectionStatus" id ="section-{{$section->id}}" section_id="{{$section->id}}" href="javascript:void(0)">
@@ -62,7 +62,7 @@
 
                            <a href="{{ url('admin/add-edit-section/'.$section->id)}}">
                             <i style="font-size:25px;" class="mdi mdi-pencil-box"></i></a>
-                            <a href="{{ url('admin/delete-section/'.$section->id)}}">
+                            <a title="section" class= "confirm_delete" href="{{ url('admin/delete-section/'.$section->id)}}">
                                 <i style="font-size:25px;" class="mdi mdi-file-excel-box"></i></a>
 
                           </td>

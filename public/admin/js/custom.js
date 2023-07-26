@@ -82,4 +82,12 @@ $(document).ready(function () {
             },
         });
     });
+    // Confirm deletion
+    $(".confirm_delete").click(function () {
+        let title = $(this).attr("title");
+        if (confirm("Are you sure you want to delete this " + title + "?")) {
+            return true;
+        }
+        return false;
+    });
 });
