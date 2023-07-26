@@ -59,11 +59,18 @@
 
                           </td>
                           <td>
+                            {{-- <a href="{{ url('admin/add-edit-section/'.$section->id)}}">
+                                <i style="font-size:25px;" class="mdi mdi-pencil-box"></i></a>
+                                <a title="section" class= "confirm_delete" record="section" href="{{ url('admin/delete-section/'.$section->id)}}">
+                                    <i style="font-size:25px;" class="mdi mdi-file-excel-box"></i></a> --}}
 
-                           <a href="{{ url('admin/add-edit-section/'.$section->id)}}">
-                            <i style="font-size:25px;" class="mdi mdi-pencil-box"></i></a>
-                            <a title="section" class= "confirm_delete" href="{{ url('admin/delete-section/'.$section->id)}}">
-                                <i style="font-size:25px;" class="mdi mdi-file-excel-box"></i></a>
+
+                                    <a href="{{ url('admin/add-edit-section/'.$section->id)}}">
+                                        <i style="font-size: 25px;" class="mdi mdi-pencil-box"></i>
+                                    </a>
+                                    <a title="section" class="confirm_delete" record="section" href="{{ url('admin/delete-section/'.$section->id)}}">
+                                        <i style="font-size: 25px;" class="mdi mdi-file-excel-box"></i>
+                                    </a>
 
                           </td>
                       </tr>

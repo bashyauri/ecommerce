@@ -26,6 +26,7 @@
   {{-- Datatable --}}
   <link rel="stylesheet" href="{{ url('admin/css/bootstrap.css') }}"/>
   <link rel="stylesheet" href="{{ url('admin/css/dataTables.bootstrap4.min.css') }}"/>
+
 </head>
 <body>
   <div class="container-scroller">
@@ -67,6 +68,9 @@
   <!-- Custom Admin Js-->
   <script src="{{ url('admin/js/custom.js')}}"></script>
   <!-- End Custom Admin Js-->
+  {{-- Add sweetalert2 --}}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- End Sweetalert Admin Js-->
 </body>
 
 </html>

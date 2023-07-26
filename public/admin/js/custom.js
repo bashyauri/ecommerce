@@ -82,12 +82,36 @@ $(document).ready(function () {
             },
         });
     });
-    // Confirm deletion
-    $(".confirm_delete").click(function () {
+    // Confirm deletion with simple javascript
+    // $(".confirm_delete").click(function () {
+    //     let title = $(this).attr("title");
+    //     if (confirm("Are you sure you want to delete this " + title + "?")) {
+    //         return true;
+    //     }
+    //     return false;
+    // });
+    // Confirm delete using sweetalert2
+    $(".confirm_delete").click(function (event) {
+        event.preventDefault(); // Prevent default link behavior
         let title = $(this).attr("title");
-        if (confirm("Are you sure you want to delete this " + title + "?")) {
-            return true;
-        }
-        return false;
+        const deleteUrl = $(this).attr("href");
+
+        Swal.fire({
+            title: "Are you sure you want to delete this " + title + "?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If the user clicks "Yes," perform the delete action
+                Swal.fire("Deleted!", "Your file has been deleted.", "success");
+
+                // Perform the delete action by navigating to the delete URL
+                window.location.href = deleteUrl;
+            }
+        });
     });
 });
