@@ -52,6 +52,7 @@ Route::prefix('/admin')->group(function () {
         Route::get('/sections', [SectionController::class, 'sections']);
         // Update Section Status
         Route::post('update-section-status', [SectionController::class, 'updateSectionStatus']);
+        Route::get('delete-section/{id}', [SectionController::class, 'deleteSection']);
     });
 });
 
