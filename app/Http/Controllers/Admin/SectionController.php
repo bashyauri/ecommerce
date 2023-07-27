@@ -42,7 +42,25 @@ class SectionController extends Controller
         }
         if ($request->isMethod('POST')) {
             $data = $request->all();
-            dd($data);
+            //   Update Admin Details
+            $rules = [
+                'section_name' => 'required|regex:/^[\pL\s\-]+$/u',
+
+            ];
+            $customMessages = [
+                'section_name.required' => 'Name is required',
+                'section_name.regex' => 'The name must be valid',
+
+            ];
+            $this->validate($request, $rules, $customMessages);
+            Section::updateOrCreate([
+                'id' => $sectionId
+            ], [
+                'name' => $request->section_name,
+                'status' => 1
+            ]);
+
+            return redirect('admin/sections')->with(['success_message' => $message]);
         }
         return view('admin.sections.add_edit_section', ['title' => $title, 'section' => $section, 'message' => $message]);
     }
