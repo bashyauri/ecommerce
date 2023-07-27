@@ -52,7 +52,10 @@ Route::prefix('/admin')->group(function () {
         Route::get('/sections', [SectionController::class, 'sections']);
         // Update Section Status
         Route::post('update-section-status', [SectionController::class, 'updateSectionStatus']);
+        // Delete Section
         Route::get('delete-section/{id}', [SectionController::class, 'deleteSection']);
+        // Add section
+        Route::match(['GET', 'POST'], 'add-edit-section/{?id}', [SectionController::class, 'addEditSection']);
     });
 });
 
