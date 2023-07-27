@@ -70,7 +70,7 @@
 
                 <div class="form-group">
                     <label for="admin_name">Section Name</label>
-                    <input type="text" name="section_name" @if (empty($section->name))
+                    <input type="text" name="section_name" @if (!empty($section->name))
                     value="{{$section->name}}"
                 @else
                 value="{{ old('section_name') }}"
